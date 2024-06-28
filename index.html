@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="./styles/main.css" />
+		<title>Document</title>
+	</head>
+	<body>
+		<main class="container mainTag">
+			<nav class="container navTag">
+				<h1 class="h1Tag">Inventario</h1>
+				<ul class="ulTag">
+					<li class="liTag">
+						<button
+							class="nButton"
+							id="Articulos">
+							Artículos
+						</button>
+					</li>
+					<li class="liTag">
+						<button
+							class="nButton"
+							id="Categorias">
+							Categorías
+						</button>
+					</li>
+					<li class="liTag">
+						<button
+							class="nButton"
+							id="Entrada">
+							Añadir
+						</button>
+					</li>
+				</ul>
+			</nav>
+			<!--Panel principal -->
+			<section
+				id="mainPanel"
+				class="container mainPanel ocultar">
+				<h2 class="h2Tag">Artículos</h2>
+				<!--Tabla de Articulos -->
+				<ul class="encabezado">
+					<li class="liTag encabezadoItem">Artículo</li>
+					<li class="liTag encabezadoItem">Categoría</li>
+					<li class="liTag encabezadoItem">Precio</li>
+					<li class="liTag encabezadoItem">Cantidad</li>
+				</ul>
+				<div id="tablaArticulos">
+					<!-- Aquí van los elementos de la tabla -->
+				</div>
+			</section>
+			<!-- Panel para las categorías -->
+			<section
+				id="categoryPanel"
+				class="container categoryPanel ocultar">
+				<h2 class="h2Tag">Categorías</h2>
+				<!-- Componente para seleccionar la categoria -->
+				<form name="seleccionarCategoria">
+					<label for="selecCategoria">Filtrar por categoría</label>
+					<input
+						type="text"
+						id="selecCategoria"
+						placeholder="Categoría"
+						class="selecCategoria" />
+					<button
+						class="aceptarForm"
+						id="aceptarForm"
+						type="button">
+						Aceptar
+					</button>
+				</form>
+				<ul class="encabezado">
+					<li class="liTag encabezadoItem">Artículo</li>
+					<li class="liTag encabezadoItem">Categoría</li>
+					<li class="liTag encabezadoItem">Precio</li>
+					<li class="liTag encabezadoItem">Cantidad</li>
+				</ul>
+				<!-- Tabla por categoría -->
+				<div class="tablaCategoria"></div>
+			</section>
+			<section
+				id="addPanel"
+				class="addPanel ocultar">
+				<h2 class="h2Tag">Añadir un artículo</h2>
+				<form
+					name="agregarForm"
+					class="formAgragar">
+					<label>Datos necesarios:</label>
+					<div>
+						<label for="nombre">Nombre:</label>
+						<input
+							id="nombre"
+							type="text"
+							placeholder="Escriba el nombre aquí" />
+					</div>
+					<div>
+						<label for="categoria">Categoria:</label>
+						<input
+							id="categoria"
+							type="text"
+							placeholder="Escriba la categoría aquí" />
+					</div>
+					<div>
+						<label for="cantidad">Cantidad:</label>
+						<input
+							id="cantidad"
+							type="number"
+							placeholder="Escriba la cantidad aquí" />
+					</div>
+					<div>
+						<label for="precio">Precio:</label>
+						<input
+							id="precio"
+							type="text"
+							placeholder="Escriba el precio aquí" />
+					</div>
+					<button
+						class="aceptar aceptarAagregar"
+						type="button"
+						id="agregarButton">
+						Añadir
+					</button>
+					<p class="mensaje"></p>
+				</form>
+			</section>
+		</main>
+	</body>
+	<script
+		defer
+		src="./app/main.js"></script>
+</html>
