@@ -4,13 +4,29 @@ class Controler {
 		this.articles = new Array();
 	}
 
+	//Metodos de annadir y eliminar articulos usando promesas
 	addArticulo(nombre, categoria, cantidad, precio) {
-		let art = new Articulo(nombre, categoria, cantidad, precio);
-		this.articles.push(art);
+		return new Promise( (resolve, reject)=> {
+			let art = new Articulo(nombre, categoria, cantidad, precio);
+			this.articles.push(art)
+			resolve(art);
+		})
+		
 	}
 	delArticulo(nombre) {
-		delete this.articles[nombre];
+		return new Promise((resolve,reject)=> {
+			const index = this.articles.findIndex(art => art.nombre === nombre);
+			if(index!== -1){
+				this.articles.splice(index,1);
+				resolve(`Articulo ${nombre} eliminado`);}
+				else{
+					reject(`Articulo ${nombre} no encontrado`);
+				}
+		});
+		
 	}
+
+	
 	incCantidad(name) {
 		let art = null;
 		let i = 0;
@@ -92,9 +108,18 @@ class Articulo extends ArticuloBase {
 
 //APP
 //Logica
+//Uso de las promesas
 const controlador = new Controler();
-controlador.addArticulo("Escoba", "Limpieza", 100, 800);
+controlador.addArticulo("Escoba", "Limpieza", 100, 800)
+.then(art => console.log(`articulo annadido: ${art.nombre}`))
+.catch(error => console.error("error",))
+
+controlador.delArticulo("Escoba")
+.then((message) => console.log(message))
+.catch(error => console.error(error))
+
 controlador.addArticulo("Refresco", "Bebida", 200, 180);
+
 
 //Elementos DOM
 const tablaArticulos = document.querySelector("#tablaArticulos");
