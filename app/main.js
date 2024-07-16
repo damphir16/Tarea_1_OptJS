@@ -93,6 +93,7 @@ class Articulo extends ArticuloBase {
 			<li class="liTag encabezadoItem">${this.cantidad}</li>
 			<li class="liTag encabezadoItem nButton add">+</li>
 			<li class="liTag encabezadoItem nButton sub">-</li>
+			<li class="liTag encabezadoItem nButton delete"><img src="../Assests/trash_bin_icon-icons.com_67981.png"></img></li>
 		</ul>`;
 	}
 	renderFilaCat() {
@@ -111,11 +112,12 @@ class Articulo extends ArticuloBase {
 //Uso de las promesas
 const controlador = new Controler();
 controlador.addArticulo("Escoba", "Limpieza", 100, 800)
+
 .then(art => console.log(`articulo annadido: ${art.nombre}`))
 .catch(error => console.error("error",))
 
 controlador.delArticulo("Escoba")
-.then((message) => console.log(message))
+.then(message => console.log(message))
 .catch(error => console.error(error))
 
 controlador.addArticulo("Refresco", "Bebida", 200, 180);
@@ -176,6 +178,7 @@ articulosButton.addEventListener("click", () => {
 
 	const addButtons = document.querySelectorAll(".add");
 	const subButtons = document.querySelectorAll(".sub");
+	const deleteButtons = document.querySelectorAll(".delete");
 
 	addButtons.forEach((obj) =>
 		obj.addEventListener("click", () => {
@@ -192,6 +195,15 @@ articulosButton.addEventListener("click", () => {
 			obj.previousElementSibling.previousElementSibling.innerHTML = art.cantidad;
 		})
 	);
+
+	deleteButtons.forEach((obj) => 
+	obj.addEventListener("click", () => {
+		const tabla = obj.parentElement.parentElement;
+		if(confirm("¿Estas seguro que desea eliminar este articulo?")){
+		controlador.delArticulo(obj.parentElement.firstElementChild.innerText);
+		tabla.removeChild(obj.parentElement)
+		}
+	}))
 });
 
 categoriasButton.addEventListener("click", () => {
